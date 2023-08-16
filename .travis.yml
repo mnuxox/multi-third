@@ -22,3 +22,15 @@ after_success:
   - docker push mnuxox/multi-nginx
   - docker push mnuxox/multi-server
   - docker push mnuxox/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-404993142766"
+  bucket_path: "docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
